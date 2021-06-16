@@ -4,18 +4,13 @@ import '../../css/scrollbar.css';
 import '../../css/chat.css';
 import closebtn from '../../images/delete.png';
 
-
-
 function ChatWindow(data){
-    //activeChats.msgFrom : Logged in user ; activeChats.msgTo : Sent To
-
     let {activeChats,activeChatWindows,client} =data;
     let [inpMsg, setInpMsg] = useState('');
-    let [chatMsgs, setchatMessages] = useState([]);   //Chat messages displayed in window
-
-
+    let [chatMsgs, setchatMessages] = useState(activeChats.chatMsgs);   //Chat messages displayed in window
+ 
     function sendChatMsg(){    
-           let messageList = [...chatMsgs,{msgTo: activeChats.msgTo,msgFrom:activeChats.msgFrom,message: inpMsg}];
+           let messageList = [...chatMsgs,{msgTo: activeChats.msgTo,msgFrom:activeChats.msgFrom,messages: inpMsg}];
            chatMsgs = messageList;    
            setchatMessages(messageList);
 
@@ -26,34 +21,28 @@ function ChatWindow(data){
                 msgFrom:activeChats.msgFrom,
                 user: activeChats.msgFrom
               }));
-
             setInpMsg("");   
     }
 
 
     client.onmessage = (message) => {
         let dataFromServer = JSON.parse(message.data);
+        console.log('on msg2',dataFromServer);
         switch(dataFromServer.type){           
-            case("message_2"):{
-                console.log("Message received from server");
-                console.log(dataFromServer);
-                let ab = (dataFromServer.msgFrom ===activeChats.msgTo);
-                console.log("Condition is :"+ ab);
-                console.log(activeChats.msgTo);
-                    if(dataFromServer.msgFrom ===activeChats.msgTo){
-                        
-                        let newMessageList = [...chatMsgs,{msgTo: dataFromServer.msgTo,msgFrom:dataFromServer.msgFrom,message: dataFromServer.msg}];        
+            case("message_2"):{           
+                console.log('activeChats',activeChats);
+                    if(dataFromServer.msgFrom ===activeChats.msgTo){                       
+                        let newMessageList = [...chatMsgs,{msgTo: dataFromServer.msgTo,msgFrom:dataFromServer.msgFrom,messages: dataFromServer.msg}];        
+                        chatMsgs = newMessageList;
                         setchatMessages(newMessageList);
-                    }
+                    }                                 
                 break;
             }
+            default:
+                break;
         }
      }
     
-
-
-    
-
     return<div>
     <Card className="boxShadow">
             <Card.Header className="chatWindowCardHeader">
@@ -61,7 +50,7 @@ function ChatWindow(data){
                     <Col>{activeChats.msgTo}</Col>
                     <Col style={{padding:"0px"}}>
                     <Image className="msgCloseBtn" src={closebtn} 
-                    onClick={() => activeChatWindows({msgTo:activeChats.msgTo,closeTag:'Y'})} alt="close"/>
+                    onClick={() => activeChatWindows({msgTo:activeChats.msgTo,closeTag:'Y',chatMsgs:chatMsgs,msgFrom: activeChats.msgFrom})} alt="close"/>
                     </Col>
                 </Row>
             
@@ -77,7 +66,7 @@ function ChatWindow(data){
                                 }}>
                                 {data.msgFrom === activeChats.msgFrom ? <span style={{}}> You </span>: data.msgFrom }
                                 <span style={{paddingLeft:"5px",color:"blue"}}> 
-                                    {data.message}
+                                    {data.messages}
                                 </span>
                             </div>   
                             )       
