@@ -1,0 +1,114 @@
+.activeUserOverflow{
+  width: 64px;
+    border-radius: 1rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 3%;
+}
+
+.activeUserList{
+  background: #31A24C;
+    margin-bottom: 4px;
+}
+
+.msgCloseBtn{
+  max-width: 25px;
+  margin-left: 113px;
+  cursor: pointer;
+}
+
+.msgicon{
+  max-width: 40px;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    padding-bottom: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.chatWindowDiv{
+  position: fixed;
+    bottom: 0;
+    right: 0;
+    width:320px;
+}
+
+.chatWindowDiv1{
+    width:320px;
+    /* position: fixed; */
+    bottom: 0;
+    right: 0;
+    
+}
+
+.chatWindowCard{
+  width:320px;
+  border-Radius:0.8rem;
+  height:445px;
+}
+.chatWindowCardHeader{
+  padding-top: 8px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    font-size: 16px;
+}
+.chatWindowCardBody{
+  font-weight: 400;
+    height: 358px;
+    font-size: 14px;
+    overflow-x: clip;
+}
+.chatWindowMsgDiv{
+  background: rgb(220, 248, 198);
+    margin-left: 0px;
+    margin-top: 4px;
+    width: 65%;
+    border-radius: 0.4rem;
+    min-height: 40px;
+    padding: 7px;
+}
+.chatWindowCardFooter{
+  padding:.3rem;
+}
+
+.chatWindow0{
+  margin-right: 70px;
+}
+
+.chatWindow1{
+  margin-right: 400px;
+}
+
+.chatWindow2{
+  margin-right: 730px;
+}
+
+
+.onlineUserscard{
+  position: fixed;
+    right: 0;
+    width: 300px;
+    /* bottom: 0; */
+    margin-right: 6px;
+}
+
+.onlineListGroup{
+  max-height: 372px;
+}
+
+.onlineUsersCardHeader{
+  padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: 500;
+    font-size: 18px;
+    /* background: #00A400; */
+    background:#dcf8c6;
+}
+
+.onlineUsersListItems{
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 8px;
+}
