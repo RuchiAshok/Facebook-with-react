@@ -23,7 +23,7 @@ function SideNav(data){
                     <img style ={{maxWidth:"40px", padding:"0px"}} src={chat} alt="chat" />
                     <span style ={{paddingLeft:"5px",fontWeight:"500"}}>Chat</span>
                     </Nav.Link>
-                    <Nav.Link eventKey="link-2">
+                    <Nav.Link eventKey="link-2" href="/chat1">
                     <img style ={{maxWidth:"40px", padding:"0px"}} src={gallery} alt="gallery" />
                     <span style ={{paddingLeft:"5px",fontWeight:"500"}}>Gallery</span>
                     </Nav.Link>

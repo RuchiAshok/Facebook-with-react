@@ -1,6 +1,6 @@
 import React,{useState } from 'react';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-import {Button,FormControl,InputGroup,Image,ListGroup,Card} from 'react-bootstrap';
+import {Button,FormControl,InputGroup,ListGroup,Card} from 'react-bootstrap';
 import {Switch,Route} from "react-router-dom";
 import Headerpanel from '../Controls/HeaderPanel';
 import '../../css/scrollbar.css';
@@ -9,6 +9,7 @@ import ChatWindow  from './ChatWindow';
 import Onlineusers from './Onlineusers';
 
 
+// const client = new W3CWebSocket('ws://127.0.0.1:5000');
 const client = new W3CWebSocket('ws://127.0.0.1:8000');
 
 function Chat(){
@@ -70,6 +71,7 @@ function Chat(){
             }
         }
 
+        
         if(data.closeTag ==='S'){
             let removedItem = activeChats.splice(0, 1);
             let data2 = activeChatOverflow.splice(data.index, 1);
@@ -104,10 +106,7 @@ function Chat(){
                         activeChatList[i].chatMsgs = inactiveChats[j].chatMsgs;
                     }
                 }
-
             }
-          //  console.log(activeChatList);
-            
              setactiveChats(activeChatList);
         }
  
@@ -130,6 +129,7 @@ function Chat(){
                 let activeChatList =[];
                 let position = null;
                 
+                
                 for (var i = 0; i < inactiveChats.length; i++) {
                     if (inactiveChats[i].msgFrom === dataFromServer.msgFrom) {
                             position = i;
@@ -141,6 +141,7 @@ function Chat(){
                             msgTo: dataFromServer.msgTo,msgFrom: dataFromServer.msgFrom,messages:dataFromServer.msg
                         }
                         inactiveChats[position].chatMsgs.push(newObj);
+                        position = null;
                 }else{
                         activeChatList = [...inactiveChats, {
                             msgTo: dataFromServer.msgTo,
@@ -149,7 +150,7 @@ function Chat(){
                         }];
                         inactiveChats = activeChatList;
                 }
-                
+
                 console.log("inactiveChats",inactiveChats);
                 setinactiveChats(inactiveChats);
                 break;

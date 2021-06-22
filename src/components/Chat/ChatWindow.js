@@ -8,7 +8,7 @@ function ChatWindow(data){
     let {activeChats,activeChatWindows,client} =data;
     let [inpMsg, setInpMsg] = useState('');
     let [chatMsgs, setchatMessages] = useState(activeChats.chatMsgs);   //Chat messages displayed in window
- 
+    console.log("Chatwindow",activeChats);
     function sendChatMsg(){    
            let messageList = [...chatMsgs,{msgTo: activeChats.msgTo,msgFrom:activeChats.msgFrom,messages: inpMsg}];
            chatMsgs = messageList;    
