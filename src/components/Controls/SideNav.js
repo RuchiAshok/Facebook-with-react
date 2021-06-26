@@ -27,7 +27,7 @@ function SideNav(data){
                     <img style ={{maxWidth:"40px", padding:"0px"}} src={gallery} alt="gallery" />
                     <span style ={{paddingLeft:"5px",fontWeight:"500"}}>Gallery</span>
                     </Nav.Link>
-                    <Nav.Link eventKey="link-2">
+                    <Nav.Link eventKey="link-2"href="/redux" >
                     <img style ={{maxWidth:"40px", padding:"0px"}} src={notification} alt="notification" />
                     <span style ={{paddingLeft:"5px",fontWeight:"500"}}>Notifications</span>
                     </Nav.Link>

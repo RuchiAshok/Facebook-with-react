@@ -5,7 +5,6 @@ import Home from './Home';
 import UserProfile from './components/Home/UserProfile';
 import connectPpl from './images/p1.jpg';
 import Chat from './components/Chat/Chat';
-import Chat1 from './components/Chat/Chat1';
 
 import {Modal,Form,Button,Container,Row,Col} from 'react-bootstrap';
 
@@ -25,9 +24,6 @@ function Login(){
          </Route>
          <Route path="/chat">
              <Chat/>
-         </Route>
-         <Route path="/chat1">
-             <Chat1/>
          </Route>
           <Route path="/">
         <div style ={{padding:"2px"}}>
