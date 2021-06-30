@@ -1,22 +1,36 @@
 import React,{useState} from 'react';
+import { connect } from "react-redux";
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {Container,Row,Col,Nav,Button,Image} from 'react-bootstrap';
 import cover_photo from '../../images/night.jpg';
 import profile_pic from '../../images/user.png';
 import UserPost from '../User/UserPost';
 import UserPhoto from '../User/UserPhoto';
+import UserFriends from '../User/UserFriends';
+import  {fetchUsers} from "../../stores/actions/users";
 
 
-function UserComData(data){
+function UserComData(props){
+    console.log("props", props);
     const [showPost, setPost] = useState(true);
+    const [showFriends, setFriends] = useState(false);  
     const [showPhoto, setPhoto] = useState(false);
 
     const handlePost =() =>{
         setPhoto(false);
+        setFriends(false);
         setPost(true);
     };
     const handlePhoto =() =>{
         setPhoto(true);
+        setFriends(false);
+        setPost(false);
+    };
+
+    const handleFriends =() =>{
+        props.fetchUsers();
+        setPhoto(false);
+        setFriends(true);
         setPost(false);
     };
 
@@ -57,8 +71,8 @@ function UserComData(data){
                                 Photos
                                 </span></Nav.Link>
                         </Nav.Item>
-                        <Nav.Item style={{fontWeight:"600"}}>
-                            <Nav.Link eventKey="link-4">Friends</Nav.Link>
+                        <Nav.Item style={{fontWeight:"600"}} onClick={handleFriends}>
+                            <Nav.Link  eventKey="link-4">Friends</Nav.Link>
                         </Nav.Item>
                     </Nav>
                     </Col>
@@ -72,8 +86,20 @@ function UserComData(data){
       </div>
         {showPhoto?<UserPhoto />:null}  
         {showPost?<UserPost />:null}
+        {showFriends?<UserFriends friends={props.users} />:null}
          
     </div>   
    
 }
-export default UserComData;
+
+
+function mapStateToProps(state){
+    return {
+        // state,
+        users:state.UsersReducer.users
+    //   backColor: state.ColorsReducer.backgroundColor,
+    }
+  }
+
+  export default connect(mapStateToProps, { fetchUsers })(UserComData);
+//export default UserComData;

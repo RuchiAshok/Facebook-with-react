@@ -1,15 +1,19 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import {Switch,Route,Link} from "react-router-dom";
+import {Switch,Route} from "react-router-dom";
 import React, {useState} from 'react';
 import Home from './Home';
 import UserProfile from './components/Home/UserProfile';
 import connectPpl from './images/p1.jpg';
 import Chat from './components/Chat/Chat';
+import { connect } from "react-redux";
+import  {userLogin} from './stores/actions/login';
+
 
 import {Modal,Form,Button,Container,Row,Col} from 'react-bootstrap';
 
 
-function Login(){
+function Login(props){
+   // console.log("Login Page: ",props);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true)
@@ -41,7 +45,9 @@ function Login(){
                     <Form.Group controlId="formGroupPassword">
                         <Form.Control size="lg" type="password" placeholder="Password" />
                     </Form.Group>
-                    <Link to ="/home"><Button style ={{width:"100%"}} size="lg" variant="primary">Login</Button></Link>
+                    {/* <Link to ="/home"><Button style ={{width:"100%"}} size="lg" variant="primary">Login</Button></Link> */}
+                    <Button style ={{width:"100%"}} size="lg" variant="primary" onClick={props.userLogin}>Login</Button>
+
                     <div style ={{marginTop:"6px",display:"block",textAlign:"center"}}>
                     <span style ={{color:"blue", cursor:"pointer"}} variant="primary">Forgotten password?</span>
                     </div>
@@ -146,4 +152,13 @@ function Login(){
     );
 }
 
-export default Login;
+//export default Login;
+function mapStateToProps(state){
+    return {
+         state
+       // users:state.UsersReducer.users
+    
+    }
+  }
+
+  export default connect(mapStateToProps, { userLogin })(Login);

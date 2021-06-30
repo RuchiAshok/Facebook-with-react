@@ -5,7 +5,8 @@ import '../../css/chat.css';
 import closebtn from '../../images/delete.png';
 
 function ChatWindow(data){
-    let {activeChat,activeChatWindows,sendChatMsg,inputMessage} =data;
+    // let {activeChat,activeChatWindows,sendChatMsg,inputMessage} =data;
+    let {activeChat,activeChatWindows,sendChatMsg} =data;
   //  console.log('Chat Messages, ',activeChat.chatMsgs);
     let [inpMsg, setInpMsg] = useState('');
 

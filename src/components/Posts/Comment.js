@@ -3,10 +3,19 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import profile from '../../images/woman_pic.png';
 // import profile_man from '../../images/man_pic.png';
 import {Container,Row,Col,OverlayTrigger,Tooltip} from 'react-bootstrap';
-
-
+import { connect } from "react-redux";
+import  {deleteComment,getComments} from '../../stores/actions/comments';
 
 function Comment(data){
+    let {commentData} =data;
+
+    function delComment(){
+        data.deleteComment({
+            postId: commentData.postId,
+            commentId:commentData.commentId
+        });
+    }
+//   console.log("Comment Component ", commentData);
         return <div style ={{marginTop:"4px",marginLeft:"20px"}}>
         <Container style ={{maxWidth:"100%", padding:"0px"}}>
             <Row>
@@ -26,18 +35,41 @@ function Comment(data){
                 </Col>
                 <Col xs={10} style ={{paddingLeft:"0px"}}>
                     <div style ={{fontWeight:"500", fontSize:"14px"}}>
-                        <span>Aastha Priya</span>
+                        <span>
+                            {
+                            commentData.userName !== null
+                            ?
+                            commentData.userName
+                            :
+                            "Aastha Priya"
+                            }
+                            </span>
                     </div>
                     <div style ={{fontWeight:"400", fontSize:"14px"}}>
-                        <span> My favourite season is Spring :)</span>
+                        <span> 
+                        {
+                            commentData.content !== null
+                            ?
+                            commentData.content
+                            :
+                            "Herebhd"
+                            }
+                            </span>
                     </div>
                     <div style ={{fontWeight:"400",fontSize:"12px"}}>
                         <span style ={{color:"blue",cursor:"pointer"}}> Like </span>
-                        <span style ={{color:"red", paddingLeft:"15px", cursor:"pointer"}}> Delete </span>
+                        <span style ={{color:"red", paddingLeft:"15px", cursor:"pointer"}} onClick={delComment}> Delete </span>
                     </div>
                 </Col>
             </Row>
         </Container>                                                                                                  
     </div>
 }
-export default Comment;
+
+function mapStateToProps(state){
+    return {
+         state
+    }
+}
+export default connect(mapStateToProps, {deleteComment,getComments})(Comment);
+//export default Comment;

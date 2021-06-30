@@ -176,7 +176,7 @@ function Chat(){
 
 
                 let activeOverflowList = [...activeChatOverflow];
-                 for(var i=0;i<activeOverflowList.length;i++){
+                 for(i=0;i<activeOverflowList.length;i++){
                      if(activeOverflowList[i].msgTo===dataFromServer.msgFrom){
                         activeOverflowList[i].chatMsgs =chatUsers[dataFromServer.msgFrom];
                      }

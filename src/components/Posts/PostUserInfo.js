@@ -7,6 +7,7 @@ import profile from '../../images/woman_pic.png';
 
 
 function PostUserInfo(data){
+        let {postData}=data;
         return <Container style ={{maxWidth:"100%", padding:"0px"}}>
                 <Row>
                     <Col style ={{flexGrow:"0"}}>
@@ -14,10 +15,24 @@ function PostUserInfo(data){
                     </Col>
                     <Col xs={10} style ={{paddingLeft:"0px"}}>
                         <div style ={{fontWeight:"600"}}>
-                            Puja Gupta
+                            {
+                            postData.userName !== null
+                            ?
+                            postData.userName
+                            :
+                            "Puja Gupta"
+                            }
+                            
                         </div>
                         <div style ={{fontWeight:"400",fontSize:"12px"}}>
-                            12 Feb
+                            {
+                            postData.createdOn !== null
+                            ?
+                            postData.createdOn
+                            :
+                            "12 Feb"
+                            }
+                            
                         </div>
                     </Col>
                     <Col>
