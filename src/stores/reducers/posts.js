@@ -28,7 +28,6 @@ export default function(state = initialState, action) {
             ...state,
             posts: newPosts
           };
-
         break;
       }
 

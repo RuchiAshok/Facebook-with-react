@@ -9,7 +9,7 @@ import  {deletePost} from '../../stores/actions/posts';
 
 function Post(data){
   let{postData} = data;
-  console.log("Post Component", postData);
+ // console.log("Post Component", postData);
   let [postComment, setComments] = useState([]);
   let [inputCommment, setInpComment] = useState('');
   const [show, setShow] = useState(false);
@@ -19,8 +19,7 @@ function Post(data){
     useEffect(() => {
         data.getComments({
             postId: postData.postId
-          });
-       
+          });   
     }, []);
     
    
@@ -30,10 +29,6 @@ function Post(data){
             postId: postData.postId
           });
           setShow(false);
-        //   data.getComments({
-        //     postId: postData.postId
-        //   });
-                 
     }
 
     function addNewComment(){

@@ -10,11 +10,11 @@ import {
 } from 'redux-saga/effects';
 import axios from 'axios';
 
-async function userLoginAPI(func) {
+async function userLoginAPI(uData) {
   let loginData =null;
   const data = await axios.post('http://localhost:8080/login', {
-    userName: 'PUja',
-    userPassword: '12345'
+    userName: uData.username,
+    userPassword: uData.password
   })
   .then(function (response) {
     //console.log('Login Response',response.data);
@@ -35,7 +35,7 @@ async function userLoginAPI(func) {
 function *   userLogin(action) {
   //  console.log("Login Saga", action);
     try {
-      const loginResponse = yield userLoginAPI();
+      const loginResponse = yield userLoginAPI(action.payload);
       console.log('Login Response Saga', loginResponse);
         yield put({
             type: "USER_LOGIN_SUCCESS",

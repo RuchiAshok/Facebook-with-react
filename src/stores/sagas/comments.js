@@ -5,6 +5,8 @@ import {
   import axios from 'axios';
   import ls from 'local-storage';
   let token = ls.get('JWTToken');
+  let userDetails = ls.get('userDetails');
+  let uDetails = JSON.parse(userDetails);
   
   async function getCommentsAPI(postId) {
     let commentsData =null;
@@ -33,7 +35,8 @@ import {
         let commentsData =null;
         const data = await axios.post('http://localhost:8080/posts/insertComment', {
           postId: cData.postId,
-          commentData: cData.inpComment
+          commentData: cData.inpComment,
+          userId:uDetails.userId
         },
         {
           headers: {

@@ -10,8 +10,7 @@ import { connect } from "react-redux";
 import  {getPosts} from './stores/actions/posts';
 
 function Home(props){
-    console.log("Home Page: ",props.posts);
-    // let [posts, setposts] = useState([])
+   // console.log("Home Page: ",props);
     useEffect(() => {
         props.getPosts();
     }, []);
@@ -44,7 +43,8 @@ function Home(props){
 function mapStateToProps(state){
     return {
          state,
-         posts:state.PostsReducer.posts    
+         posts:state.PostsReducer.posts,
+         userDetails:state.LoginReducer.login 
     }
   }
 

@@ -7,21 +7,22 @@ import profile from '../../images/woman_pic.png';
 import setting from '../../images/settings.png';
 import logout from '../../images/exit.png';
 import onClickOutside from "react-onclickoutside";
+import ls from 'local-storage';
 
 
 function HUserDD(data){
      let  {closeit} = data;
-   
-    // const [isOpen, setIsOpen] = useState(true);
-    // const toggle = () => setIsOpen(!isOpen);
     HUserDD.handleClickOutside = () =>
     {   
         closeit();
-        
-        // console.log('second '+isOpen);
-        // setIsOpen(false);
-        // console.log('second_a '+isOpen);
     } 
+
+    function userLogout(){
+        
+
+        window.location.href = "http://localhost:3000/";
+
+    }
         return <div>
             {/* { isOpen ?  */}
         <Card style={{width:"360px"}} className="boxShadow" >
@@ -44,10 +45,12 @@ function HUserDD(data){
             </div>
               <hr />
             <div>
-            <Link to="/">
+            {/* <Link to="/"> */}
+            <div style={{cursor:"pointer"}}>
                 <img style ={{maxWidth:"40px", padding:"0px"}} src={logout} alt="logout" />
-                <span style ={{fontWeight:"400",fontSize:"17px",paddingLeft:"18px",color:"black"}}>Logout</span>
-            </Link>
+                <span style ={{fontWeight:"400",fontSize:"17px",paddingLeft:"18px",color:"black"}} onClick={userLogout}>Logout</span>
+            </div>
+            {/* </Link> */}
             </div>
         </Card.Body>
     </Card>

@@ -15,8 +15,19 @@ import {Modal,Form,Button,Container,Row,Col} from 'react-bootstrap';
 function Login(props){
    // console.log("Login Page: ",props);
     const [show, setShow] = useState(false);
+    let [inpUsername,setInpUserName]= useState('');
+    let [inpPassword,setInpPassword]= useState('');
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true)
+    const handleShow = () => setShow(true);
+
+    function login(){
+        props.userLogin({
+            username: inpUsername,
+            password:inpPassword
+        });
+        setInpUserName('');
+        setInpPassword('');
+    }
 
     return(
         <Switch>
@@ -40,13 +51,13 @@ function Login(props){
                     <div style ={{display:"block",textAlign:"center"}}>
                     <Form style ={{paddingTop:"100px",width:"90%", marginLeft:"20px"}}>
                     <Form.Group controlId="formGroupEmail">
-                        <Form.Control  size="lg" type="text" placeholder="UserName" />
+                        <Form.Control value={inpUsername} onChange={event => setInpUserName(event.target.value)} size="lg" type="text" placeholder="UserName" />
                     </Form.Group>
                     <Form.Group controlId="formGroupPassword">
-                        <Form.Control size="lg" type="password" placeholder="Password" />
+                        <Form.Control value={inpPassword} onChange={event => setInpPassword(event.target.value)} size="lg" type="password" placeholder="Password" />
                     </Form.Group>
                     {/* <Link to ="/home"><Button style ={{width:"100%"}} size="lg" variant="primary">Login</Button></Link> */}
-                    <Button style ={{width:"100%"}} size="lg" variant="primary" onClick={props.userLogin}>Login</Button>
+                    <Button style ={{width:"100%"}} size="lg" variant="primary" onClick={login}>Login</Button>
 
                     <div style ={{marginTop:"6px",display:"block",textAlign:"center"}}>
                     <span style ={{color:"blue", cursor:"pointer"}} variant="primary">Forgotten password?</span>

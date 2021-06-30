@@ -5,7 +5,9 @@ import {
   import axios from 'axios';
   import ls from 'local-storage';
   let token = ls.get('JWTToken');
-  
+  let userDetails = ls.get('userDetails');
+  let uDetails = JSON.parse(userDetails);
+
   async function getPostsAPI() {
     let postsData =null;
     const data = await axios.get('http://localhost:8080/posts/getPost', {
@@ -30,7 +32,8 @@ import {
     let postsData =null;
     const data = await axios.post('http://localhost:8080/posts/insertPost', {
           newTitle: post.title,
-          newContent: post.inputContent
+          newContent: post.inputContent,
+          userId:uDetails.userId
         },
         {
           headers: {

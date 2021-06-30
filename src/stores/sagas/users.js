@@ -4,11 +4,9 @@ import {
 } from 'redux-saga/effects'
 
 
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* fetchUsers(action) {
     console.log("Action: ", action)
     try {
-        //const posts = yield call(axios.get());
         yield put({
             type: "FETCH_USERS_SUCCESS",
             payload: {
